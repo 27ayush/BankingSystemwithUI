@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Make a Withdraw</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">State Bank Of India</a>
+</nav>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <h1 class="text-center">Make a Withdraw</h1>
+            <form th:action="@{/customer/{id}/withdraws (id=${customerWithdraw.id})}" method="post">
+
+                <div class="form-group">
+                    <label>Withdraw Amount:</label>
+                    <input type="number" name="withdrawAmt" step="0.01" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">WithDraw</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

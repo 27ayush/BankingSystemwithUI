@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Of Bank Account Holder</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">State Bank Of India</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+<div class ="container">
+    <div class = "row">
+        <h1> List of Account Holder </h1>
+    </div>
+    <div class = "row">
+        <div class = "col-lg-3">
+            <a th:href = "@{/bankCustomer/new}" class = "btn btn-primary btn-sm mb-3"> Add Customer</a>
+        </div>
+    </div>
+
+    <table class = "table table-striped table-bordered">
+        <thead class = "table-dark">
+        <tr>
+            <th> ID</th>
+            <th> Name</th>
+            <th> Email</th>
+            <th> Balance </th>
+            <th> Actions </th>
+        </tr>
+        </thead>
+
+    <tbody>
+    <tr th:each = "customers: ${customer}">
+        <td th:text = "${customers.id}"></td>
+        <td th:text = "${customers.Name}"></td>
+        <td th:text = "${customers.email}"></td>
+        <td th:text = "${customers.balance}"></td>
+        <td>
+            <a th:href = "@{/customer/{id}/deposit (id=${customers.id})}"
+               class = "btn btn-primary">Deposit</a>
+
+            <a th:href = "@{/customer/{id}/withdraw (id=${customers.id})}"
+               class = "btn btn-primary">Withdraw</a>
+
+            <a th:href = "@{/customer/{id}/delete (id=${customers.id})}"
+               class = "btn btn-danger">Delete</a>
+
+        </td>
+    </tr>
+    </tbody>
+    </table>
+    <script th:inline="javascript">
+    function showDeleteConfirmation(id) {
+        if (confirm('Are you sure you want to delete this customer?')) {
+            window.location.href = '/customer/' + id + '/delete';
+        }
+    }
+</script>
+</div>
+</body>
+</html>
